@@ -84,6 +84,12 @@ def action ():
         todos.insert_one({ "name":name, "desc":desc, "date":date, "pr":pr, "done":"no"})
         return redirect("/list")
 
+@app.route("/update")
+def update ():
+	id=request.values.get("_id")
+	task=todos.find({"_id":ObjectId(id)})
+	return render_template('update.html',tasks=task,h=heading,t=title)
+
 @app.route("/remove")
 def remove():
         #Deleting a Task with various references
