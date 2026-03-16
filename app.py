@@ -2,12 +2,13 @@ from flask import Flask, render_template,request,redirect,url_for # For flask im
 from bson import ObjectId # For ObjectId to work
 from pymongo import MongoClient
 import os
+from dotenv import load_dotenv
 
 app = Flask(__name__)
 title = "TODO sample application with Flask and MongoDB"
 heading = "TODO Reminder with Flask and MongoDB"
 
-client = MongoClient("mongodb://127.0.0.1:27017") #host uri
+client = MongoClient(os.getenv("MONGO_URI")) #host uri
 db = client.mymongodb    #Select the database
 todos = db.todo #Select the collection name
 
